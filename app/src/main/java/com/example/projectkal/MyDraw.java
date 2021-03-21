@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MyDraw extends View {
@@ -15,6 +16,15 @@ public class MyDraw extends View {
     int blue = Color.BLUE;
     int myTransparentBlue = Color.argb(127, 0, 0, 255);
     int ballColor = getResources().getColor(R.color.ballColor); // res/values/colors
+    final static int COLOR = Color.rgb(200, 170, 0);
+
+
+    int board[][] = new int[15][15];
+    int left = 5, top = 5;
+    int cell_size = 0;
+
+
+
 
     // позволяет получить целочисленное значение из шестнадцатеричной формы
     int pColor = Color.parseColor("#FF0000FF");
@@ -24,50 +34,50 @@ public class MyDraw extends View {
     public MyDraw (Context context){
         super(context);
 
+        Toast toast = Toast.makeText(context, String.valueOf(COLOR), Toast.LENGTH_LONG);
+        toast.show();
+
+    }
+    protected void drawBoard(Canvas canvas){
+        paint.setColor(COLOR);
+        int k = 2;
+        int count_y = top;
+
+        for (int[] row : board){
+            int count_x = left;
+            for (int _ : row){
+                for (int shadow_k = 1; shadow_k > -1; shadow_k--){
+                    int color = COLOR + 800 * shadow_k;
+                    canvas.drawLine(count_x + shadow_k * k, top + shadow_k * k,
+                            count_x + k * shadow_k,cell_size * 14 + top, paint);
+                    canvas.drawLine(left, count_y + k * shadow_k, cell_size * 14 + left,
+                            count_y + k * shadow_k, paint);
+                }
+                count_x += cell_size;
+            }
+            count_y += cell_size;
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 
+
+
+        if (getHeight() < getWidth()) cell_size = getHeight() / 14;
+        else cell_size = getWidth() / 14;
+
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
         canvas.drawPaint(paint);
 
         // Включаем антиальясинг
-        paint.setAntiAlias(true);
-        paint.setColor(Color.argb(127,0,0,255));
-        // Полупрозрачный синий круг радиусом 100 пикселей в центре экрана
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, 100, paint);
-
-        // Синий прямоугольник вверху экрана
-        paint.setColor(Color.BLUE);
-        canvas.drawRect(0, 0, getWidth(),200, paint);
-
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(30);
-        canvas.drawText("Samsung IT school", 50, 100, paint);
-
-        // текст под углом
-        float rotate_center_x = 200; //центр поворота холста по оси X
-        float rotate_center_y = 200; // центр поворота холста по оси Y
-        float rotate_angle = 45; //угол поворота
-
-        canvas.rotate(-rotate_angle, rotate_center_x, rotate_center_y);
+        //paint.setAntiAlias(true);
+        drawBoard(canvas);
 
 
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(40);
 
-        canvas.drawText("Samsung IT school",0,450,paint);
 
-        // возвращаем холст на прежний угол
-        canvas.rotate(rotate_angle, rotate_center_x, rotate_center_y);
-
-        // Выводим изображение логотипа Samsung на экран в правом нижнем углу экрана
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.gg);
-        int xx = canvas.getWidth(), yy = canvas.getHeight();
-        canvas.drawBitmap(image, xx - image.getWidth(), yy - image.getHeight(), paint);
     }
 }
