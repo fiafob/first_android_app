@@ -20,7 +20,7 @@ public class MyDraw extends View {
 
 
     int board[][] = new int[15][15];
-    int left = 5, top = 5;
+    int left = 5, top = 50;
     int cell_size = 0;
 
 
