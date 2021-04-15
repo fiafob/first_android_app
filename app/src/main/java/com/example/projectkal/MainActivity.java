@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         // Make this activity, full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+///
         // Hide the Title bar of this activity screen
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
