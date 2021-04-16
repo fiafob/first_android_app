@@ -1,10 +1,11 @@
 package com.example.projectkal;
 
 public class Figure {
-    private int x1, y1;
-    private int x2, y2;
-    private int x3, y3;
-    private int x4, y4;
+    public int x1, y1;
+    public int x2, y2;
+    public int x3, y3;
+    public int x4, y4;
+    public int code;
 
 
     public Figure(int figure) {
@@ -15,6 +16,7 @@ public class Figure {
                 x2 = 5; y2 = 0;
                 x3 = 4; y3 = 1;
                 x4 = 5; y4 = 1;
+                code = 1;
 
                 break;
 
@@ -23,7 +25,7 @@ public class Figure {
                 x2 = 4; y2 = 0;
                 x3 = 5; y3 = 0;
                 x4 = 6; y4 = 1;
-
+                code = 2;
 
                 break;
 
@@ -32,6 +34,7 @@ public class Figure {
                 x2 = 3; y2 = 0;
                 x3 = 4; y3 = 0;
                 x4 = 6; y4 = 0;
+                code = 3;
 
                 break;
 
@@ -40,6 +43,7 @@ public class Figure {
                 x2 = 4; y2 = 1;
                 x3 = 5; y2 = 0;
                 x4 = 6; y4 = 1;
+                code = 4;
 
                 break;
 
@@ -48,6 +52,7 @@ public class Figure {
                 x2 = 4; y2 = 0;
                 x3 = 5; y3 = 0;
                 x4 = 3; y4 = 1;
+                code = 5;
 
                 break;
 
@@ -56,7 +61,7 @@ public class Figure {
                 x2 = 4; y2 = 0;
                 x3 = 4; y3 = 1;
                 x4 = 6; y4 = 1;
-
+                code = 6;
 
 
                 break;
@@ -66,6 +71,7 @@ public class Figure {
                 x2 = 6; y2 = 0;
                 x3 = 6; y3 = 1;
                 x4 = 4; y4 = 1;
+                code = 7;
 
                 break;
         }
