@@ -41,7 +41,7 @@ public class NextPieceView extends View {
         Paint p = new Paint();
 
         if (pieceList.size() > 0) {
-            Figure s = gameBoard.nextFigure();
+            Figure s = gameBoard.getNextPiece();
 
             if (s.code == 1) {
                 canvas.drawBitmap(squarePiece, 0, 0, p);

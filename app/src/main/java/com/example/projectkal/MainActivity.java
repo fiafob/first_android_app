@@ -23,43 +23,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Button startBtn, pauseBtn, resetBtn;
-    private ImageButton rotate, toRight, toDown, toLeft;
-    private TextView points, currentLevel;
+    private Button buttonStart;
+    private Button buttonReset;
+    private ImageButton rotateButton;
+    private ImageButton rightButton;
+    private ImageButton downButton;
+    private ImageButton leftButton;
 
-    private NextPieceView nextPieceView;
-    private GameBoard gameBoard;
+    private TextView pointTextView;
+    private TextView highscoreLevelTextView;
+    private TextView currentLevelTextView;
     private Tetris tetris;
+    private NextPieceView nextPieceView;
     private boolean pause = true;
+    private GameBoard gameBoard = new GameBoard();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Make this activity, full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // Hide the Title bar of this activity screen
 //        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        //setContentView(new MyDraw(this));
-//        setContentView(new MyAxel(this));
+
         setContentView(R.layout.activity_main);
 
 
-        startBtn = (Button) findViewById(R.id.buttonstart);
-        pauseBtn = (Button) findViewById(R.id.buttonpause);
-        resetBtn = (Button) findViewById(R.id.buttonreset);
+        setContentView(R.layout.activity_main);
 
-        toRight = (ImageButton) findViewById(R.id.rightButton);
-        toLeft = (ImageButton) findViewById(R.id.leftButton);
-        toDown = (ImageButton) findViewById(R.id.downButton);
-        rotate = (ImageButton) findViewById(R.id.rotateButton);
 
-        points = (TextView) findViewById(R.id.textViewPoints);
-        currentLevel = (TextView) findViewById(R.id.levelText);
 
-        nextPieceView= new NextPieceView(this, gameBoard);
+        buttonStart = (Button) findViewById(R.id.buttonstart);
+        buttonReset = (Button) findViewById(R.id.buttonreset);
+        rotateButton = (ImageButton) findViewById(R.id.rotateButton);
+        rightButton = (ImageButton) findViewById(R.id.rightButton);
+        downButton = (ImageButton) findViewById(R.id.downButton);
+        leftButton = (ImageButton) findViewById(R.id.leftButton);
+        pointTextView = (TextView) findViewById(R.id.textViewPoints);
+        highscoreLevelTextView= (TextView) findViewById(R.id.textViewHighscore);
+        currentLevelTextView = (TextView) findViewById(R.id.levelText);
+
+        nextPieceView = new NextPieceView(this, gameBoard);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(300,300);
+        nextPieceView.setLayoutParams(params1);
+        RelativeLayout relativeSteinAnzeige = (RelativeLayout) findViewById(R.id.relativelayout1);
+        nextPieceView.setBackgroundColor(Color.YELLOW);
+        relativeSteinAnzeige.addView(nextPieceView);
 
         tetris = new Tetris(this,nextPieceView, gameBoard);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(480, 900);
@@ -67,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout relativeTetris = (RelativeLayout) findViewById(R.id.relativelayout);
         tetris.setBackgroundColor(Color.YELLOW);
         relativeTetris.addView(tetris);
-        startBtn.setOnClickListener(new View.OnClickListener() {
+        buttonStart.setOnClickListener(new View.OnClickListener() {
 
             int tmp=0;
             @Override
@@ -75,21 +88,23 @@ public class MainActivity extends AppCompatActivity {
 
                 tmp++;
 
-                if(startBtn.getText().equals("Start")) {
-                    startBtn.setText("Pause");
+                if(buttonStart.getText().equals("Start")) {
+                    buttonStart.setText("Pause");
                     pause = false;
+
 
                 }
 
-                else if(startBtn.getText().equals("Pause")) {
-                    startBtn.setText("Start");
+                else if(buttonStart.getText().equals("Pause")) {
+                    buttonStart.setText("Start");
                     pause = true;
+
                 }
 
             }
         });
 
-        resetBtn.setOnClickListener(new View.OnClickListener() {
+        buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tetris.resetGame();
@@ -102,12 +117,14 @@ public class MainActivity extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         pause = false;
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
         pause = true;
+
     }
 
     @Override
@@ -116,15 +133,16 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public Button getResetButton() { return resetBtn;}
-    public ImageButton getRightButton() { return toRight;}
-    public ImageButton getDownButton() { return toDown;}
-    public ImageButton getLeftButton() { return toLeft;}
-    public ImageButton getRotateButton() { return rotate; }
+    public Button getResetButton() { return buttonReset;}
+    public ImageButton getRightButton() { return rightButton;}
+    public ImageButton getDownButton() { return downButton;}
+    public ImageButton getLeftButton() { return leftButton;}
+    public ImageButton getRotateButton() { return rotateButton; }
 
     public boolean getPause() {  return pause;}
     public void setPause(boolean pause) { this.pause=pause;}
+    public TextView getHighscoreLevelTextView() { return highscoreLevelTextView; }
+    public TextView getPointTextView() { return pointTextView; }
+    public TextView getCurrentLevelTextView() { return currentLevelTextView;}
 
-    public TextView getPointTextView() { return points; }
-    public TextView getCurrentLevelTextView() { return currentLevel;}
 }

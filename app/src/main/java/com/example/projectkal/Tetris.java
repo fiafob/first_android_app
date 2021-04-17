@@ -46,13 +46,13 @@ public class Tetris extends View implements View.OnClickListener{
 
         points = new Points(context);
 
-        currentLevelTextView = mainActivity.getCurrentLevelTextView();
+//        currentLevelTextView = mainActivity.getCurrentLevelTextView();
+//
+//        currentPunkteTextView = mainActivity.getPointTextView();
 
-        currentPunkteTextView = mainActivity.getPointTextView();
-
-        currentLevelTextView.append("0");
-        currentPunkteTextView.append("0");
-        highscoreLevelTextView.append(""+points.loadHighscore());
+//        currentLevelTextView.append("0");
+//        currentPunkteTextView.append("0");
+//        highscoreLevelTextView.append(""+points.loadHighscore());
 
         rotateButton = mainActivity.getRotateButton();
         rightButton = mainActivity.getRightButton();
@@ -78,12 +78,12 @@ public class Tetris extends View implements View.OnClickListener{
                     public void run() {
                         if(gameOver()==false && mainActivity.getPause()==false ) {
 
-                            gameBoard.moveDown(gameBoard.currentFigure());
+                            gameBoard.moveDown(gameBoard.getCurrentPiece());
 
-                            if (gameBoard.canMoveDown(gameBoard.currentFigure()) == false) {
+                            if (gameBoard.can_Move_Down(gameBoard.getCurrentPiece()) == false) {
                                 int deletedRows = gameBoard.clearRows();
                                 gameBoard.clearRows();
-                                pieceList.remove(gameBoard.currentFigure());
+                                pieceList.remove(gameBoard.getCurrentPiece());
                                 pieceList.add(new Figure(random.nextInt(7) + 1));
                                 nextPieceView.invalidate();
 
@@ -119,7 +119,7 @@ public class Tetris extends View implements View.OnClickListener{
 
     public boolean gameOver() {
 
-        if( gameBoard.checkGameOver(gameBoard.currentFigure())==true ) {
+        if( gameBoard.checkGameOver(gameBoard.getCurrentPiece())==true ) {
             timer.cancel();
             pieceList.clear();
             gameBoard.clearGameBoard();
@@ -174,19 +174,19 @@ public class Tetris extends View implements View.OnClickListener{
 
             switch(v.getId()) {
                 case R.id.rightButton:
-                    gameBoard.moveRight(gameBoard.currentFigure());
+                    gameBoard.moveRight(gameBoard.getCurrentPiece());
                     invalidate();
                     break;
                 case R.id.downButton:
-                    gameBoard.fastDrop(gameBoard.currentFigure());
+                    gameBoard.fastDrop(gameBoard.getCurrentPiece());
                     invalidate();
                     break;
                 case R.id.leftButton:
-                    gameBoard.moveLeft(gameBoard.currentFigure());
+                    gameBoard.moveLeft(gameBoard.getCurrentPiece());
                     invalidate();
                     break;
                 case R.id.rotateButton:
-                    gameBoard.rotateFigure(gameBoard.currentFigure());
+                    gameBoard.rotatePiece(gameBoard.getCurrentPiece());
                     invalidate();
                     break;
             }
