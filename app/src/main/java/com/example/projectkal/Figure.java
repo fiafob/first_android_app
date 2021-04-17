@@ -6,6 +6,16 @@ public class Figure {
     public int x3, y3;
     public int x4, y4;
     public int code;
+    private Figure figure;
+
+    // need for checking is it possible to rotate
+    public Figure( Figure figure ){
+        this.figure = figure;
+        this.x1 = figure.x1; this.y1 = figure.y1;
+        this.x2 = figure.x2; this.y2 = figure.y2;
+        this.x3 = figure.x3; this.y3 = figure.y3;
+        this.x4 = figure.x4; this.y4 = figure.y4;
+    }
 
 
     public Figure(int figure) {
@@ -105,6 +115,9 @@ public class Figure {
     public void move( int x, int y ){
         x1 += x; x2 += x; x3 += x; x4 += x;
         y1 += y; y2 += y; y3 += y; y4 += y;
+    }
+    public int getMinCoordinate(int x1, int x2, int x3, int x4){
+        return Math.min(Math.min(x1, x2), Math.min(x3, x4));
     }
 }
 
