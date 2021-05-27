@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ProjectKal</string>
+    <string name="lines">LINES - %s</string>
+    <string name="top">TOP \n %s</string>
+    <string name="score">SCORE \n %s</string>
+    <string name="next">NEXT</string>
+    <string name="level">LEVEL %s</string>
+    <string name="start">START</string>
+    <string name="pause">PAUSE</string>
+    <string name="restart">RESTART</string>
 </resources>
