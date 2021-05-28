@@ -2,42 +2,29 @@ package com.example.projectkal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ListActivity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
     private Button gameButton, restartButton;
     private ImageButton leftArrow, rightArrow, rotateArrow, dropArrow;
     private TextView linesText, topText, scoreText, levelText;
     private BoardView boardSurface;
-    private NextOneView nextOneSurface;
-    private boolean pause = true;
+
     private Storage storage;
+    private Field field = new Field();
+
+    private boolean pause = true;
 
 
     @Override
@@ -55,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-        loadStrings( this );
+        loadXml( this );
 
     }
 
-    public void loadStrings( Context context ){
+    public void loadXml( Context context ){
         gameButton = (Button) findViewById( R.id.gameButton );
         restartButton = (Button) findViewById( R.id.restartButton );
 
@@ -73,32 +60,61 @@ public class MainActivity extends AppCompatActivity {
         scoreText = (TextView) findViewById( R.id.score );
         levelText = (TextView) findViewById( R.id.level );
 
-        boardSurface = ( BoardView ) new BoardView( context );
+        boardSurface = ( BoardView ) new BoardView( context,  field, storage );
         RelativeLayout.LayoutParams mainParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         mainParams.addRule(RelativeLayout.BELOW, R.id.lines);
         boardSurface.setLayoutParams(mainParams);
+        boardSurface.setBackgroundColor(Color.WHITE);
         RelativeLayout mainLayout = ( RelativeLayout ) findViewById(R.id.mainLayout);
         mainLayout.addView(boardSurface);
 
-        nextOneSurface = ( NextOneView ) new NextOneView( context );
-        RelativeLayout.LayoutParams nextOneParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, 100);
-        nextOneParams.addRule(RelativeLayout.BELOW, R.id.next);
-        nextOneSurface.setLayoutParams(nextOneParams);
-        RelativeLayout nextLayout = ( RelativeLayout ) findViewById(R.id.nextLayout);
-        nextLayout.addView(nextOneSurface);
+
 
         Storage.init( context );
 
-        linesText.setText(getString(R.string.lines, "0"));
-        topText.setText(getString(R.string.top,
-                String.valueOf(storage.load("topScore"))));
-        scoreText.setText(getString(R.string.score, "0"));
-        levelText.setText(getString(R.string.level,
-                String.valueOf(storage.load("savedLevel"))));
+
+
+        gameButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if ( gameButton.getText().equals("START")){
+                    gameButton.setText("PAUSE");
+                    pause = false;
+                }
+                else{
+                    gameButton.setText("START");
+                    pause = true;
+                }
+            }
+        });
+        restartButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {boardSurface.resetGame();}
+        });
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
 
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
+
+    public Button getRestartButton() { return restartButton; }
+    public ImageButton getLeftArrow() { return leftArrow; }
+    public ImageButton getRightArrow() { return rightArrow; }
+    public ImageButton getRotateArrow() { return rotateArrow; }
+    public ImageButton getDropArrow() { return dropArrow; }
+    public TextView getTopText() { return topText; }
+    public TextView getScoreText() { return scoreText; }
+    public TextView getLevelText() { return levelText; }
+    public boolean isPause() { return pause; }
+    public void setPause( boolean pause ) { this.pause = pause; }
+    public TextView getLinesText() { return linesText; }
 }

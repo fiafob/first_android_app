@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 public class Storage {
     public static final String STORAGE_NAME = "StorageName";
+    // keys - topScore, savedLevel
 
     private static SharedPreferences settings = null;
     private static SharedPreferences.Editor editor = null;
