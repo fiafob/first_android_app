@@ -24,14 +24,7 @@ public class Field {
     public int codeToColor(int x, int y) {
 
         if(field[x][y]==0) return Color.parseColor("#000000");  // White
-        if(field[x][y]==1) return Color.parseColor("#00FF00"); ; // Square Green
-        if(field[x][y]==2) return Color.parseColor("#FF00FF"); ; //  zpiece Magenta
-        if(field[x][y]==3) return Color.parseColor("#0000FF"); ;  // ipiece Blue
-        if(field[x][y]==4) return Color.parseColor("#00FFFF"); ;  // tpiece Cyan
-        if(field[x][y]==5) return Color.parseColor("#ffbf00"); ;  // spiece Orange
-        if(field[x][y]==6) return Color.parseColor("#BEBEBE"); ;  // jpiece gray
-        if(field[x][y]==7) return Color.parseColor("#FF0000"); ; // lpiece Red
-
+        if(field[x][y]==1) return Color.parseColor("#BEBEBE"); ;  // jpiece gray
         return -1;
     }
 

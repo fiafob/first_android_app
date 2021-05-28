@@ -80,11 +80,11 @@ public class BoardView extends View implements View.OnClickListener {
                     @Override
                     public void run() {
 
-                        if(gameOver()==false && mainActivity.isPause()==false ) {
+                        if( !gameOver() && !mainActivity.isPause() ) {
 
                             field.moveDown(field.getCurrentPiece());
 
-                            if (field.pieceCanMoveDown(field.getCurrentPiece()) == false) {
+                            if ( !field.pieceCanMoveDown(field.getCurrentPiece()) ) {
                                 int deletedRows = field.clearRows();
                                 field.clearRows();
                                 pieceList.remove(field.getCurrentPiece());
@@ -127,7 +127,7 @@ public class BoardView extends View implements View.OnClickListener {
 
     public boolean gameOver() {
 
-        if( field.checkGameOver(field.getCurrentPiece())==true ) {
+        if( field.checkGameOver(field.getCurrentPiece()) ) {
             timer.cancel();
             lvl = 0;
             pieceList.clear();
@@ -155,9 +155,7 @@ public class BoardView extends View implements View.OnClickListener {
         getContext().startActivity(intent);
     }
 
-    /*
-    change colorCode to spezific Color and paint on GAmeboard
-     */
+
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -174,13 +172,10 @@ public class BoardView extends View implements View.OnClickListener {
         }
     }
 
-    /*
-    control falling pieces with buttons
-     */
 
     @Override
     public void onClick(View v) {
-        if(mainActivity.isPause()==false) {
+        if(!mainActivity.isPause()) {
 
             switch(v.getId()) {
                 case R.id.rightArrow:

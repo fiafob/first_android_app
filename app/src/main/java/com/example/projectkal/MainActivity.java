@@ -98,12 +98,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
+        pause = true;
 
     }
 
     @Override
     public void onDestroy(){
         super.onDestroy();
+        finish();
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        pause = false;
     }
 
     public Button getRestartButton() { return restartButton; }

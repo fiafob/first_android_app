@@ -25,64 +25,64 @@ public class Pieces {
     public Pieces(int f) {
         switch (f) { // Square
             case 1:
-                x1 = 0; y1 = 7;
-                x2 = 0; y2 = 8;
-                x3 = 1; y3 = 7;
-                x4 = 1; y4 = 8;
+                x1 = 0; y1 = 4;
+                x2 = 0; y2 = 5;
+                x3 = 1; y3 = 4;
+                x4 = 1; y4 = 5;
 
                 colorCode = 1;
                 break;
 
             case 2:    // z Piece
-                x1 = 0;y1 = 7;
-                x2 = 0;y2 = 8;
-                x3 = 1;y3 = 8;
-                x4 = 1;y4 = 9;
+                x1 = 1; y1 = 4;
+                x2 = 0; y2 = 4;
+                x3 = 0; y3 = 3;
+                x4 = 1; y4 = 5;
 
                 colorCode = 2;
                 break;
 
             case 3: // I Piece
-                x1 = 0;y1 = 6;
-                x2 = 0;y2 = 7;
-                x3 = 0;y3 = 8;
-                x4 = 0;y4 = 9;
+                x1 = 0; y1 = 5;
+                x2 = 0; y2 = 4;
+                x3 = 0; y3 = 3;
+                x4 = 0; y4 = 6;
 
                 colorCode = 3;
                 break;
 
             case 4: // T Piece
-                x1 = 0;y1 = 8;
-                x2 = 1;y2 = 7;
-                x3 = 1;y3 = 8;
-                x4 = 1;y4 = 9;
+                x1 = 1;y1 = 4;
+                x2 = 1;y2 = 3;
+                x3 = 0;y3 = 4;
+                x4 = 1;y4 = 5;
 
                 colorCode = 4;
                 break;
 
             case 5: // S Piece
-                x1 = 0;y1 = 7;
-                x2 = 0;y2 = 8;
-                x3 = 1;y3 = 6;
-                x4 = 1;y4 = 7;
+                x1 = 0;y1 = 4;
+                x2 = 0;y2 = 5;
+                x3 = 1;y3 = 3;
+                x4 = 1;y4 = 4;
 
                 colorCode = 5;
                 break;
 
             case 6:  // J Piece
-                x1 = 0;y1 = 7;
-                x2 = 0;y2 = 8;
-                x3 = 0;y3 = 9;
-                x4 = 1;y4 = 9;
+                x1 = 0;y1 = 4;
+                x2 = 0;y2 = 3;
+                x3 = 0;y3 = 5;
+                x4 = 1;y4 = 5;
 
                 colorCode = 6;
                 break;
 
             case 7:  //  L Piece
-                x1 = 0;y1 = 7;
-                x2 = 0;y2 = 8;
-                x3 = 0;y3 = 9;
-                x4 = 1;y4 = 7;
+                x1 = 0;y1 = 4;
+                x2 = 0;y2 = 3;
+                x3 = 0;y3 = 5;
+                x4 = 1;y4 = 3;
 
                 colorCode = 7;
                 break;
