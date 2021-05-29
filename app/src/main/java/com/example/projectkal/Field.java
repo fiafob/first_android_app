@@ -23,8 +23,8 @@ public class Field {
 
     public int codeToColor(int x, int y) {
 
-        if(field[x][y]==0) return Color.parseColor("#000000");  // White
-        if(field[x][y]==1) return Color.parseColor("#BEBEBE"); ;  // jpiece gray
+        if(field[x][y]==0) return Color.parseColor("#9A9A9A");  //grey
+        if(field[x][y]==1) return Color.parseColor("#000000"); ;
         return -1;
     }
 

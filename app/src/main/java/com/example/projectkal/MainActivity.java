@@ -70,11 +70,7 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout mainLayout = ( RelativeLayout ) findViewById(R.id.mainLayout);
         mainLayout.addView(boardSurface);
 
-
-
         Storage.init( context );
-
-
 
         gameButton.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -2,12 +2,15 @@ package com.example.projectkal;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,12 @@ public class GameOverScreen extends AppCompatActivity implements View.OnTouchLis
     private RelativeLayout layout;
 
     public void onCreate( Bundle savedInstanceState ){
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.theme2);
         layout = (RelativeLayout) findViewById(R.id.layout);

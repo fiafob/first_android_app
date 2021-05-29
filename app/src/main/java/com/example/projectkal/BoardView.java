@@ -30,6 +30,7 @@ public class BoardView extends View implements View.OnClickListener {
     private Score score;
     private Storage storage;
     private final int point = 10;
+    private final int CELL_SIZE = 45;
     private int timerPeriod = 250;
     private int level = 0;
     private boolean pause;
@@ -103,9 +104,9 @@ public class BoardView extends View implements View.OnClickListener {
                                     scoreText.setText("SCORE:" +"\n"+ p);
                                     levelText.setText("LEVEL" +" "+ score.getLevel());
 
-                                    if (score.getLevel() > score.loadHighscore()) {
+                                    if (p > score.loadHighscore()) {
                                         score.writeHighscore();
-                                        topText.setText("TOP:" +"\n"+ score.getLevel());
+                                        topText.setText("TOP:" +"\n"+ score.getCurrentPoints());
                                     }
                                 }
 
@@ -167,9 +168,21 @@ public class BoardView extends View implements View.OnClickListener {
 
                 int color  = field.codeToColor(x,y);
                 p.setColor(color);
-                canvas.drawRect(y*45, x*45, y*45+45, x*45+45,p);
+                canvas.drawRect(y*CELL_SIZE + 2, x*CELL_SIZE + 2,
+                        y*CELL_SIZE+CELL_SIZE + 2, x*CELL_SIZE+CELL_SIZE + 2,p);
+            }
+            p.setColor(Color.WHITE);
+            canvas.drawRect(0, x * 45, CELL_SIZE * 10, x * 45 + 4, p);
+            for (int y = 0; y < field.getWIDHT(); y++) {
+                canvas.drawRect(y * 45, 0, y * 45 + 4, CELL_SIZE * 20, p);
             }
         }
+        p.setColor(Color.BLACK);
+        for (int t = 0; t <= CELL_SIZE * 20; t += CELL_SIZE * 20){
+            canvas.drawRect(0, t, CELL_SIZE * 10, t + 5, p);
+            canvas.drawRect(t / 2, 0, 5 + t / 2, CELL_SIZE * 20 + 5, p);
+        }
+
     }
 
 
